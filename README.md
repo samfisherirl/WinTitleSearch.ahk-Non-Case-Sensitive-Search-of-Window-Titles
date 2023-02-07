@@ -1,13 +1,13 @@
 # WinTitleSearch.ahk
 Search Window Titles without worrying about case sensitivity 
 
-    ;simply:
-    #Include WinTitleSearch.ahk
+;simply:
+#Include WinTitleSearch.ahk
 
     msgbox % WinTitleSearch("steam", "title")
     Returns the PID of the window with the title "steam"
 
-    ; WinTitleSearch.ahk - Super Simple Solution to Case Sensitive Window Title Search. Return PID from any input search matching a window title. 
+; WinTitleSearch.ahk - Super Simple Solution to Case Sensitive Window Title Search. Return PID from any input search matching a window title. 
 
 
 
