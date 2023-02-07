@@ -2,33 +2,44 @@
 SetTitleMatchMode, 2
 DetectHiddenWindows, on
 
-;msgbox % WinTitleSearch("steam")
-;Returns the PID of the window with the title "steam"
+;msgbox % WinTitleSearch("steam", "title")
+;Returns the Title of the window with the title "Steam"
 
-WinTitleSearch(input){
+;msgbox % WinTitleSearch("steam", "PID")
+;Returns the PID of the window with the title "Steam"
+
+;msgbox % WinTitleSearch("steam", "1")
+;Returns the Title of the window with the title "Steam"
+
+;msgbox % WinTitleSearch("steam", "2")
+;Returns the PID of the window with the title "Steam"
+
+WinTitleSearch(input, config){
 	list_of_windows := WinTit.list_windows()
-	windows_lowercase := WinTit.convert_lower(list_of_windows)
-	StringLower, inputs_lowercase, input
-	keyvalue := WinTit.search(inputs_lowercase, windows_lowercase)
+	windows_lowercase := WinTit.convert_to_lowercase(list_of_windows)
+  ; convert all active windows to lowercase
+	StringLower, input_lowercase, input
+  ; convert input to lowercase
+	keyvalue := WinTit.search(input_lowercase, windows_lowercase)
+  ; return keyvalue within array matching lowercase will match key of list of windows
 	PID := WinExist(list_of_windows[keyvalue])
-	return PID
+  if (config := "title") or (config := "1")
+  {
+    return list_of_windows[keyvalue]
+  }
+  if (config := "PID") or (config := "2")
+  {
+    return PID
+  }
 }
 
 
 class WinTit
 {
-	
-	search(input_lower, windows_lowercase){
-		for k, v in windows_lowercase
-		{
-			if (v = input_lower)
-			{
-				return k
-			}
-		}
-		return 0
-	}
-	
+  
+  
+  
+  
 	list_windows(){
 		window_list := []
 		windows_lowercase := []
@@ -44,7 +55,7 @@ class WinTit
 		;MsgBox %r%
 	}
 	
-	convert_lower(windows_list){
+	convert_to_lowercase(windows_list){
 		windows_lowercase := []
 		for k, v in windows_list
 			{
@@ -54,6 +65,17 @@ class WinTit
 		return windows_lowercase
 	}
 	
+	
+	search(input_lower, windows_lowercase){
+		for k, v in windows_lowercase
+		{
+			if (v = input_lower)
+			{
+				return k
+			}
+		}
+		return 0
+	}
 	
 	
 }
