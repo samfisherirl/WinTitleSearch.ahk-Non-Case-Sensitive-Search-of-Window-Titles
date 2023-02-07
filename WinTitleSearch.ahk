@@ -69,7 +69,7 @@ class WinTit
 	search(input_lower, windows_lowercase){
 		for k, v in windows_lowercase
 		{
-			if (v = input_lower)
+			if InStr(v, input_lower)
 			{
 				return k
 			}
