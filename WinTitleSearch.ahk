@@ -23,11 +23,11 @@ WinTitleSearch(input, config){
 	keyvalue := WinTit.search(input_lowercase, windows_lowercase)
   ; return keyvalue within array matching lowercase will match key of list of windows
 	PID := WinExist(list_of_windows[keyvalue])
-  if (config := "title") or (config := "1")
+  if (config = "title") or (config = 1)
   {
     return list_of_windows[keyvalue]
   }
-  if (config := "PID") or (config := "2")
+  if (config = "PID") or (config = 2)
   {
     return PID
   }
